@@ -66,11 +66,11 @@
 
     </table>
     <div class="card-footer d-flex align-items-center">
-        <p class="m-0 text-secondary">Showing <span>1</span> to <span>8</span> of <span>16</span> entries</p>
+        <p class="m-0 text-secondary"> Showing <span> {{$customer->firstItem()}} </span> to <span> {{$customer->lastItem()}} </span> of <span> {{$customer->total()}} </span> entries</p>
         <ul class="pagination m-0 ms-auto">
-            <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                    <!-- Download SVG icon from http://tabler-icons.io/i/chevron-left -->
+            <li class="page-item ">
+                <a class="page-link" href=" {{$customer->previousPageUrl()}} " tabindex="-1">
+                    <!-- Download SVG icon from http: //tabler-icons.io/i/chevron-left -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <path d="M15 6l-6 6l6 6" />
@@ -78,20 +78,20 @@
                     prev
                 </a>
             </li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">5</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#">
-                    next <!-- Download SVG icon from http://tabler-icons.io/i/chevron-right -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M9 6l6 6l-6 6" />
-                    </svg>
-                </a>
-            </li>
+            @for ($i = 1; $i <= $customer->lastPage(); $i++)
+                <li class="page-item @if($customer->currentPage() == $i) active @endif">
+                    <a class="page-link" href="{{$customer->url($i)}}"> {{$i}} </a>
+                </li>
+                @endfor
+                <li class="page-item">
+                    <a class="page-link" href="{{$customer->nextPageUrl()}}">
+                        next <!--Download SVG icon from http: //tabler-icons.io/i/chevron-right -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24 stroke - width=" 2" stroke="currentColor" fill="none" stroke - linecap="round" stroke linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M9 6l6 6l-6 6" />
+                        </svg>
+                    </a>
+                <li>
         </ul>
     </div>
 </div>

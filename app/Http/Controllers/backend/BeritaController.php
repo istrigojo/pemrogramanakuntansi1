@@ -15,7 +15,7 @@ class BeritaController extends Controller
      */
     public function index()
     {
-        $berita = Berita::orderBy('id', 'desc')->get();
+        $berita = Berita::orderBy('id', 'desc')->paginate(5);
         return view('backend.v_berita.index', [
             'judul' => 'Berita',
             'sub' => 'Data Berita',

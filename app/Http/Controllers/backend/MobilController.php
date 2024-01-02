@@ -14,7 +14,7 @@ class MobilController extends Controller
      */
     public function index()
     {
-        $mobil = Mobil::orderBy('id', 'asc')->get();
+        $mobil = Mobil::orderBy('id', 'asc')->paginate(5);
         return view('backend.v_mobil.index', [
             'judul' => 'Mobil',
             'sub' => 'Data Mobil',

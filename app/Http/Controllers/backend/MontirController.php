@@ -17,7 +17,7 @@ class MontirController extends Controller
     public function index()
     {
         $kategori = Kategori::orderBy('id', 'asc')->get();
-        $montir = Montir::orderBy('id', 'asc')->get();
+        $montir = Montir::orderBy('id', 'asc')->paginate(5);
         return view('backend.v_montir.index', [
             'judul' => 'Montir',
             'sub' => 'Data Montir',

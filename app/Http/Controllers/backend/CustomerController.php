@@ -14,7 +14,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customer = Customer::orderBy('id', 'asc')->get();
+        $customer = Customer::orderBy('id', 'asc')->paginate(5);
         // $mobil = Mobil::orderBy('mobil_id', 'asc')->get();
         return view('backend.v_customer.index', [
             'judul' => 'Customer',
@@ -29,7 +29,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        $mobil = Mobil::orderBy('id', 'asc')->get();
+        $mobil = Mobil::orderBy('id', 'asc');
         return view('backend.v_customer.create', [
             'judul' => 'Customer',
             'sub' => 'Tambah Customer',

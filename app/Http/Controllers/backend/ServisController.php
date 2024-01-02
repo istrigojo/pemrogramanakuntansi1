@@ -17,7 +17,7 @@ class ServisController extends Controller
      */
     public function index()
     {
-        $servis = Servis::orderBy('id', 'asc')->get();
+        $servis = Servis::orderBy('id', 'asc')->paginate(5);
         // $mobil = Mobil::orderBy('mobil_id', 'asc')->get();
         return view('backend.v_servis.index', [
             'judul' => 'Servis',

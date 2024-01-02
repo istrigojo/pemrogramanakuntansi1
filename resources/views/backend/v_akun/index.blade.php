@@ -41,11 +41,9 @@
         @foreach($akun as $index => $row)
         <tbody>
             <tr>
-                <td> {{ $index + 1 }} </td>
-                <td> {{ $row -> kode_akun }}
-                </td>
-                <td> {{ $row -> nama_akun}}
-                </td>
+                <td> {{ $akun->firstItem()+$index  }} </td>
+                <td> {{ $row->kode_akun }} </td>
+                <td> {{ $row->nama_akun}} </td>
                 <td>
                     <a href="{{ route('akun.edit', $row->id) }}" title="Ubah Data">
                         <span class="btn btn-outline-primary"><i class="fa fa-pencil"></i>Ubah</span>
@@ -58,50 +56,37 @@
                 </td>
             </tr>
             @endforeach
-
         </tbody>
     </table>
     <div class="card-footer d-flex align-items-center">
-
-        {{ $index->links() }}
-        <p class="m-0 text-secondary"> Showing <span> 1 </span> to <span>4</span> of <span> 4 </span> entries</p>
+        <p class="m-0 text-secondary"> Showing <span> {{$akun->firstItem()}} </span> to <span> {{$akun->lastItem()}} </span> of <span> {{$akun->total()}} </span> entries</p>
         <ul class="pagination m-0 ms-auto">
-            <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1" aria - disabled="true">
+            <li class="page-item ">
+                <a class="page-link" href=" {{$akun->previousPageUrl()}} " tabindex="-1">
                     <!-- Download SVG icon from http: //tabler-icons.io/i/chevron-left -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke - width="2" stroke="currentColor" fill="none" stroke - linecap="round" strok - linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <path d="M15 6l-6 6l6 6" />
                     </svg>
                     prev
                 </a>
             </li>
-            <li class="page-item active">
-                <a class="page-link" href="#"> 1 </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#"> 2 </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#"> 3 </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#"> 4 </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#"> 5 </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">
-                    next <!--Download SVG icon from http: //tabler-icons.io/i/chevron-right -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24 stroke - width=" 2" stroke="currentColor" fill="none" stroke - linecap="round" stroke linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M9 6l6 6l-6 6" />
-                    </svg>
-                </a>
-            <li>
+            @for ($i = 1; $i <= $akun->lastPage(); $i++)
+                <li class="page-item @if($akun->currentPage() == $i) active @endif">
+                    <a class="page-link" href="{{$akun->url($i)}}"> {{$i}} </a>
+                </li>
+                @endfor
+                <li class="page-item">
+                    <a class="page-link" href="{{$akun->nextPageUrl()}}">
+                        next <!--Download SVG icon from http: //tabler-icons.io/i/chevron-right -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24 stroke - width=" 2" stroke="currentColor" fill="none" stroke - linecap="round" stroke linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M9 6l6 6l-6 6" />
+                        </svg>
+                    </a>
+                <li>
         </ul>
     </div>
 </div>
-<!--penutuan template-->
+<!--penutupan tidur template-->
 @endsection

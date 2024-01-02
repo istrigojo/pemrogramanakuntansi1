@@ -14,9 +14,9 @@ class AkunController extends Controller
      */
     public function index()
     {
-        $akun = DB::table('akun')->paginate(10);
-        $akun = Akun::orderBy('id', 'asc')->get();
+        $akun = Akun::orderBy('id', 'asc')->paginate(5);
         return view('backend.v_akun.index', [
+            // 'akun' => DB::table('akun')->paginate(5),
             'judul' => 'Akun',
             'sub' => 'Data Akun',
             'akun' => $akun

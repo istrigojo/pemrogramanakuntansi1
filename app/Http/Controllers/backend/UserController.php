@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::orderBy('updated_at', 'desc')->get();
+        $user = User::orderBy('updated_at', 'desc')->paginate(5);
         return view('backend.v_user.index', [
             'judul' => 'User',
             'sub' => 'Data User',

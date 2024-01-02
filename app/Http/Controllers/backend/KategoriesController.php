@@ -13,7 +13,7 @@ class KategoriesController extends Controller
      */
     public function index()
     {
-        $kategories = Kategories::orderBy('id', 'desc')->get();
+        $kategories = Kategories::orderBy('id', 'desc')->paginate(5);
         return view('backend.v_kategories.index', [
             'judul' => 'Kategori Berita',
             'sub' => 'Data Kategori Berita',

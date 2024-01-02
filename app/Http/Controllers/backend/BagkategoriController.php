@@ -14,7 +14,7 @@ class BagkategoriController extends Controller
      */
     public function index()
     {
-        $bagkategori = Bagkategori::orderBy('id', 'desc')->get();
+        $bagkategori = Bagkategori::orderBy('id', 'desc')->paginate(5);
         return view('backend.v_bagkategori.index', [
             'judul' => 'Golongan Kategori',
             'sub' => 'Data Kategori Servis',

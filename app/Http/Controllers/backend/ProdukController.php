@@ -14,7 +14,7 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        $produk = Produk::orderBy('id', 'asc')->get();
+        $produk = Produk::orderBy('id', 'asc')->paginate(5);
         return view('backend.v_produk.index', [
             'judul' => 'Persediaan',
             'sub' => 'Data Persediaan',
