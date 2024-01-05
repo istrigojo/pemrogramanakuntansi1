@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Backend\Bagkategori;
 use App\Models\Backend\Montir;
+use Illuminate\Support\Facades\DB;
 
 class BagkategoriController extends Controller
 {

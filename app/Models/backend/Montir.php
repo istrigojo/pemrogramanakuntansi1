@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Montir extends Model
 {
-    public $timestamps = true;
+    public $timestamps = false;
     protected $table = "montir";
     // protected $fillable = ['kode_akun', 'nama_akun']; //field yang dapat diisi
     protected $guarded = ['id'];

@@ -47,44 +47,30 @@ class BeritaController extends Controller
             'kategories_id' => 'required',
             'tanggal' => 'required',
             'detail' => 'required',
-            'img_berita' => 'image|mimes:jpeg,jpg,png,gif|file|max:1024'
-        ], [
-            'img_berita.image' => 'Format gambar gunakan file dengan ekstensi jpeg, jpg, png, atau gif.',
-            'img_berita.max' => 'Ukuran file gambar Maksimal adalah 1024 KB.'
+            'foto' => 'image|mimes:jpeg,jpg,png,gif|file|max:1024',
+        ], $messages = [
+            'foto.image' => 'Format gambar gunakan file dengan ekstensi jpeg, jpg, png, atau gif.',
+            'foto.max' => 'Ukuran file gambar Maksimal adalah 1024 KB.'
         ]);
-        if ($request->file('img_berita')) {
-            $file = $request->file('img_berita');
+        if ($request->file('foto')) {
+            $file = $request->file('foto');
             $extension = $file->getClientOriginalExtension();
             $fileName = date('YmdHis') . '_' . uniqid() . '.' . $extension;
-            $destinationPath = public_path('/storage/img-berita/');
+            $destinationPath = public_path('storage/img-berita/');
             $image = Image::make($file);
-            //simpan gambar asli
-            //$image->save($destinationPath . $fileName);
-            $validatedData['img_berita'] = $fileName;
-            // // create thumbnail 1 (lg)
-            // $thumbnailPath1 = 'thumb_lg_' . $fileName;
-            // $thumbnail1 = $image->resize(800, null, function ($constraint) {
+            //resize manual
+            $image->fit(400, 400, function ($constraint) {
+                $constraint->upsize();
+            });
+            //resize otomatis
+            // $image->resize(400, null, function ($constraint) {
             //     $constraint->aspectRatio();
             //     $constraint->upsize();
             // });
-            // $thumbnail1->save($destinationPath . $thumbnailPath1);
-
-            // // create thumbnail 2 (md)
-            // $thumbnailPath2 = 'thumb_md_' . $fileName;
-            // $thumbnail2 = $image->resize(500, null, function ($constraint) {
-            //     $constraint->aspectRatio();
-            //     $constraint->upsize();
-            // });
-            // $thumbnail2->save($destinationPath . $thumbnailPath2);
-
-            // // create thumbnail 3 (sm)
-            // $thumbnailPath3 = 'thumb_sm_' . $fileName;
-            // $thumbnail3 = $image->fit(100, 100, function ($constraint) {
-            //     $constraint->upsize();
-            // });
-            // $thumbnail3->save($destinationPath . $thumbnailPath3);
+            $image->save($destinationPath . $fileName);
+            $validatedData['foto'] = $fileName;
         }
-        $validatedData['status'] = 0;
+        // $validatedData['status'] = 0;
         // $validatedData['user_id'] = auth()->user()->id;
         Berita::create($validatedData);
         return redirect('/backend/berita')->with('success', 'Data berhasil tersimpan');

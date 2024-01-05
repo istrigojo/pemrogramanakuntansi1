@@ -29,7 +29,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        $mobil = Mobil::orderBy('id', 'asc');
+        $mobil = Mobil::orderBy('id', 'asc')->get();
         return view('backend.v_customer.create', [
             'judul' => 'Customer',
             'sub' => 'Tambah Customer',

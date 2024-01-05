@@ -5,16 +5,16 @@ namespace App\Models\Backend;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Servis extends Model
+class Transaksi extends Model
 {
     public $timestamps = true;
-    protected $table = "servis";
+    protected $table = "transaksi";
     //protected $fillable = ['nama', 'email', 'no_hp']; //field yang dapat diisi
     protected $guarded = ['id'];
 
-    public function customer()
+    public function servis()
     {
-        return $this->belongsTo(Customer::class, 'customer_id', 'mobil_id');
+        return $this->belongsTo(Servis::class, 'servis_id');
     }
 
     // public function mobil()
@@ -28,7 +28,7 @@ class Servis extends Model
 
     public function kategori()
     {
-        return $this->belongsTo(Kategori::class, 'kategori_id');
+        return $this->belongsTo(Kategori::class, 'kategori_id', 'montir_id');
     }
 
     public function produk()

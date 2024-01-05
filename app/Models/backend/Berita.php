@@ -12,10 +12,10 @@ class Berita extends Model
     // protected $fillable = ['kode_akun', 'nama_akun']; //field yang dapat diisi
     protected $guarded = ['id'];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class, 'user_id');
+    // }
 
     public function kategories()
     {

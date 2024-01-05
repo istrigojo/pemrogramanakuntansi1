@@ -28,6 +28,7 @@ class MobilController extends Controller
     public function create()
     {
         // $customer = Customer::orderBy('id', 'asc')->get();
+
         return view('backend.v_mobil.create', [
             'judul' => 'Mobil',
             'sub' => 'Data Mobil',

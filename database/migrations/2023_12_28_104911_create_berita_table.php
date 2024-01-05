@@ -19,10 +19,10 @@ return new class extends Migration
             $table->text('detail');
             $table->string('img_berita')->nullable();
             $table->unsignedBigInteger('kategories_id');
-            $table->unsignedBigInteger('user_id');
+            // $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->foreign('kategories_id')->references('id')->on('kategories');
-            $table->foreign('user_id')->references('id')->on('user');
+            // $table->foreign('user_id')->references('id')->on('user');
         });
     }
 

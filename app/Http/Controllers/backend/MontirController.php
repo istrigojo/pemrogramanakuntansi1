@@ -44,15 +44,14 @@ class MontirController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         $validatedData = $request->validate([
             'nama_montir' => 'required',
             'email' => 'required|email|unique:montir',
             'no_hp' => 'required|min:9|max:14',
             'jenis_kelamin' => 'required',
             'alamat' => 'required',
-            'kategori_id' => 'nullable|array',
-            // 'spesialis' => 'required',
+            'kategori_id' => 'required|array',
             'foto' => 'image|mimes:jpeg,jpg,png,gif|file|max:1024',
         ], $messages = [
             'foto.image' => 'Format gambar gunakan file dengan ekstensi jpeg, jpg, png, atau gif.',
@@ -63,7 +62,7 @@ class MontirController extends Controller
             $file = $request->file('foto');
             $extension = $file->getClientOriginalExtension();
             $fileName = date('YmdHis') . '_' . uniqid() . '.' . $extension;
-            $destinationPath = public_path('storage/img-user/');
+            $destinationPath = public_path('storage/img-montir/');
             $image = Image::make($file);
             //resize manual
             $image->fit(400, 400, function ($constraint) {

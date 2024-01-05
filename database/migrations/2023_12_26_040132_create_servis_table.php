@@ -13,19 +13,22 @@ return new class extends Migration
     {
         Schema::create('servis', function (Blueprint $table) {
             $table->id();
-            $table->boolean('status');
-            // $table->unsignedBigInteger('customer_id');
-            // // $table->unsignedBigInteger('mobil_id');
+            $table->string('no_trans');
+            $table->boolean('status', [0, 1])->default(0); //0=proses, 1=selesai
+            $table->timestamp('tanggal_masuk')->nullable();
+            $table->timestamp('tanggal_selesai')->nullable();
+            $table->double('total_servis')->nullable();
+            $table->unsignedBigInteger('customer_id');
             // $table->unsignedBigInteger('user_id');
-            // // $table->unsignedBigInteger('kategori_id');
-            // $table->unsignedBigInteger('montir_id');
+            $table->unsignedBigInteger('kategori_id');
+            $table->unsignedBigInteger('montir_id');
             // $table->unsignedBigInteger('produk_id');
-            // $table->timestamps();
-            // $table->foreign('customer_id')->references('id')->on('customer');
-            // // $table->foreign('mobil_id')->references('id')->on('mobil');
+            $table->timestamps();
+            $table->foreign('customer_id')->references('id')->on('customer');
+            // $table->foreign('mobil_id')->references('id')->on('mobil');
             // $table->foreign('user_id')->references('id')->on('user');
-            // $table->foreign('kategori_id')->references('id')->on('kategori');
-            // $table->foreign('montir_id')->references('id')->on('montir');
+            $table->foreign('kategori_id')->references('id')->on('kategori');
+            $table->foreign('montir_id')->references('id')->on('montir');
             // $table->foreign('produk_id')->references('id')->on('produk');
         });
     }
