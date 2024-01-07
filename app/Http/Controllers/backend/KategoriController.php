@@ -17,7 +17,7 @@ class KategoriController extends Controller
         $bagkategori = Bagkategori::orderBy('id', 'desc')->get();
         $kategori = Kategori::orderBy('id', 'desc')->paginate(5);
         return view('backend.v_kategori.index', [
-            'judul' => 'Kategori',
+            'judul' => 'Jenis Servis',
             'sub' => 'Jenis Servis',
             'kategori' => $kategori,
             'bagkategori' => $bagkategori
@@ -31,8 +31,8 @@ class KategoriController extends Controller
     {
         $bagkategori = Bagkategori::orderBy('id', 'desc')->get();
         return view('backend.v_kategori.create', [
-            'judul' => 'Kategori',
-            'sub' => 'Tambah Kategori',
+            'judul' => 'Data Jenis Servis',
+            'sub' => 'Tambah Jenis Servis',
             'bagkategori' => $bagkategori
         ]);
     }

@@ -1,7 +1,7 @@
 @extends('backend.v_layouts.app')
 @section('content')
     <!-- <h3 text-align:center>SELAMAT DATANG DI TEGUH SERVICE MOBIL <br>
-                                                                                    SIAP MENYEMBUHKAN MOBIL ANDA</h3> -->
+                                                                                        SIAP MENYEMBUHKAN MOBIL ANDA</h3> -->
 
     <!-- Page header -->
     <div class="page-wrapper">
@@ -159,7 +159,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
-                                <div class="subheader">Customer baru</div>
+                                <div class="subheader">Customer Aktif</div>
                                 <div class="ms-auto lh-1">
                                     <div class="dropdown">
                                         <a class="dropdown-toggle text-secondary" href="#"

@@ -57,6 +57,10 @@ class MontirController extends Controller
             'foto.image' => 'Format gambar gunakan file dengan ekstensi jpeg, jpg, png, atau gif.',
             'foto.max' => 'Ukuran file gambar Maksimal adalah 1024 KB.'
         ]);
+        // Serialize the array of category IDs
+        $kategori_id_serialized = json_encode($validatedData['kategori_id']);
+
+
         // $selectedCategories = $request->input('kategori_id');
         if ($request->file('foto')) {
             $file = $request->file('foto');
@@ -76,6 +80,9 @@ class MontirController extends Controller
             $image->save($destinationPath . $fileName);
             $validatedData['foto'] = $fileName;
         }
+        // Add the serialized category IDs to the validated data
+        $validatedData['kategori_id'] = $kategori_id_serialized;
+
 
         Montir::create($validatedData);
         return redirect('/backend/montir')->with('success', 'Data berhasil tersimpan');

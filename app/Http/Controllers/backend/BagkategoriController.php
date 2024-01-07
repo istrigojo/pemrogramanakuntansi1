@@ -30,7 +30,7 @@ class BagkategoriController extends Controller
     {
         //     $montir = Montir::orderBy('id', 'desc')->get();
         return view('backend.v_bagkategori.create', [
-            'judul' => 'Golongan Kategori',
+            'judul' => 'Kategori Servis',
             'sub' => 'Tambah Kategori Servis'
             // 'montir' => $montir
         ]);

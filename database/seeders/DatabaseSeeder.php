@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Backend\Akun;
+use App\Models\Backend\Bagkategori;
+use App\Models\Backend\Kategori;
 use App\Models\Customer;
 
 
@@ -12,6 +14,121 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        Bagkategori::create([
+            'kategori_servis' => 'Servis Berkala'
+        ]);
+        Bagkategori::create([
+            'kategori_servis' => 'Perbaikan Mesin'
+        ]);
+        Bagkategori::create([
+            'kategori_servis' => 'Sistem Kelistrikan'
+        ]);
+        Bagkategori::create([
+            'kategori_servis' => 'Sistem Rem'
+        ]);
+        Bagkategori::create([
+            'kategori_servis' => 'Sistem Suspensi dan Kemudi'
+        ]);
+        Bagkategori::create([
+            'kategori_servis' => 'Sistem Bahan Bakar'
+        ]);
+        Bagkategori::create([
+            'kategori_servis' => 'Servis AC Mobil'
+        ]);
+        Bagkategori::create([
+            'kategori_servis' => 'Ban dan Roda'
+        ]);
+        Bagkategori::create([
+            'kategori_servis' => 'Sistem Transmisi'
+        ]);
+        Bagkategori::create([
+            'kategori_servis' => 'Layanan Tambahan'
+        ]);
+        Kategori::create([
+            'jenis_servis' => 'Ganti Oli dan Filter',
+            'spesialis' => 'umum',
+            'bagkategori_id' => '1',
+            'biaya_servis' => '100000'
+        ]);
+        Kategori::create([
+            'jenis_servis' => 'Pengecekan Fluida',
+            'spesialis' => 'umum',
+            'bagkategori_id' => '1',
+            'biaya_servis' => '100000'
+        ]);
+        Kategori::create([
+            'jenis_servis' => 'Diagnosa Mesin',
+            'spesialis' => 'umum',
+            'bagkategori_id' => '2',
+            'biaya_servis' => '100000'
+        ]);
+        Kategori::create([
+            'jenis_servis' => 'Perbaikan Mesin Umum',
+            'spesialis' => 'umum',
+            'bagkategori_id' => '2',
+            'biaya_servis' => '100000'
+        ]);
+        Kategori::create([
+            'jenis_servis' => 'Overhaul Mesin',
+            'spesialis' => 'umum',
+            'bagkategori_id' => '2',
+            'biaya_servis' => '100000'
+        ]);
+        Kategori::create([
+            'jenis_servis' => 'Pengecekan dan Pemeliharaan Aki',
+            'spesialis' => 'umum',
+            'bagkategori_id' => '3',
+            'biaya_servis' => '100000'
+        ]);
+        Kategori::create([
+            'jenis_servis' => 'Perbaikan Sistem Pengapian',
+            'spesialis' => 'umum',
+            'bagkategori_id' => '3',
+            'biaya_servis' => '100000'
+        ]);
+        // Kategori::create([
+        //     'jenis_servis' => '',
+        //     'spesialis' => 'umum',
+        //     'bagkategori_id' => '1',
+        //     'biaya_servis' => '100000'
+        // ]);
+        // Kategori::create([
+        //     'jenis_servis' => '',
+        //     'spesialis' => 'umum',
+        //     'bagkategori_id' => '1',
+        //     'biaya_servis' => '100000'
+        // ]);
+        // Kategori::create([
+        //     'jenis_servis' => '',
+        //     'spesialis' => 'umum',
+        //     'bagkategori_id' => '1',
+        //     'biaya_servis' => '100000'
+        // ]);
+        // Kategori::create([
+        //     'jenis_servis' => '',
+        //     'spesialis' => 'umum',
+        //     'bagkategori_id' => '1',
+        //     'biaya_servis' => '100000'
+        // ]);
+        // Kategori::create([
+        //     'jenis_servis' => '',
+        //     'spesialis' => 'umum',
+        //     'bagkategori_id' => '1',
+        //     'biaya_servis' => '100000'
+        // ]);
+        // Kategori::create([
+        //     'jenis_servis' => '',
+        //     'spesialis' => 'umum',
+        //     'bagkategori_id' => '1',
+        //     'biaya_servis' => '100000'
+        // ]);
+        // Kategori::create([
+        //     'jenis_servis' => '',
+        //     'spesialis' => 'umum',
+        //     'bagkategori_id' => '1',
+        //     'biaya_servis' => '100000'
+        // ]);
+
         // User::create([
         //     'nama' => 'Administrator',
         //     'email' => 'admin@gmail.com',

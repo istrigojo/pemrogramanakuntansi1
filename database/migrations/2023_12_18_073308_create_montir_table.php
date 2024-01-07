@@ -14,12 +14,14 @@ return new class extends Migration
         Schema::create('montir', function (Blueprint $table) {
             $table->id();
             $table->string('nama_montir');
-            $table->string('email');
-            $table->string('no_hp');
+            $table->string('email')->unique();
+            $table->string('no_hp')->nullable();
+            $table->date('tanggal_lahir')->nullable();
             $table->string('jenis_kelamin');
             $table->text('alamat')->nullable();
             $table->string('img_montir')->nullable();
             $table->unsignedBigInteger('kategori_id')->nullable();
+            $table->timestamps();
             $table->foreign('kategori_id')->references('id')->on('kategori');
             // $table->timestamps();
         });

@@ -32,7 +32,6 @@
                         @error('img_montir')
                             <div class="invalid-feedback alert-danger">{{ $message }}</div>
                         @enderror
-
                     </div>
                     <div class="mb-3 row">
                         <label class="col-2 col-form-label required">Nama montir</label>
@@ -49,37 +48,16 @@
                         @enderror
                         <p></p>
                     </div>
-
                     <div class="mb-3 row">
-                        <label class="col-2 col-form-label required">Jenis Servis</label>
-                        <div class="col">
-                            <select class="form-control form-select @error('kategori_id') is-invalid @enderror"
-                                name="kategori_id" id="floatingSelect" aria-label="Floating label select example">
-                                <option selected="">Spesialis Servis</option>
-                                @foreach ($kategori as $row)
-                                    <option value="{{ $row->id }}"> {{ $row->jenis_servis }} </option>
-                                @endforeach
-                            </select>
-                        </div>
-                        @error('kategori')
-                            <span class="invalid-feedback alert-danger" role="alert">
-                                {{ $message }}
-                            </span>
-                        @enderror
-                        <p></p>
-                    </div>
-
-                    <div class="mb-3 row">
-                        <label class="col-2 col-form-label">Jenis Servis</label>
+                        {{-- <label class="col-2 col-form-label">Jenis Servis</label> --}}
                         <label for="btn-radio-vertical-dropdown-dropdown" class="col-2 col-form-label btn dropdown-toggle"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Spesialis Servis</label>
-
                         <div class="dropdown-menu dropdown-menu-demo col">
-                            @foreach ($kategori as $row)
+                            @foreach ($kategori as $k)
                                 <label class="dropdown-item">
                                     <input class="form-check-input m-0 me-2" type="checkbox" name="kategori_id[]"
-                                        value="{{ $row->id }}"> {{ $row->id }}
+                                        value="{{ $k->id }}">{{ $k->jenis_servis }}
                                 </label>
                             @endforeach
                             </label>
@@ -90,9 +68,6 @@
                             </span>
                         @enderror
                     </div>
-
-
-
                     <div class="mb-3 row">
                         <label class="col-2 col-form-label  required">Email</label>
                         <div class="col">
@@ -168,8 +143,7 @@
                         </div>
                     </div>
                 </div>
+            </form>
         </div>
-        </form>
-    </div>
     </div>
 @endsection
