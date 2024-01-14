@@ -52,39 +52,35 @@ class MontirController extends Controller
             'jenis_kelamin' => 'required',
             'alamat' => 'required',
             'kategori_id' => 'required|array',
-            'foto' => 'image|mimes:jpeg,jpg,png,gif|file|max:1024',
+            'img_montir' => 'sometimes|nullable|image|mimes:jpeg,jpg,png,gif|file|max:1024',
         ], $messages = [
-            'foto.image' => 'Format gambar gunakan file dengan ekstensi jpeg, jpg, png, atau gif.',
-            'foto.max' => 'Ukuran file gambar Maksimal adalah 1024 KB.'
+            'img_montir.image' => 'Format gambar gunakan file dengan ekstensi jpeg, jpg, png, atau gif.',
+            'img_montir.max' => 'Ukuran file gambar Maksimal adalah 1024 KB.'
         ]);
-        // Serialize the array of category IDs
-        $kategori_id_serialized = json_encode($validatedData['kategori_id']);
+        $montir = new Montir();
+        $montir->nama_montir = $validatedData['nama_montir'];
+        $montir->email = $validatedData['email'];
+        $montir->no_hp = $validatedData['no_hp'];
+        $montir->jenis_kelamin = $validatedData['jenis_kelamin'];
+        $montir->alamat = $validatedData['alamat'];
+        if ($request->hasFile('img_montir')) {
+            $image = $request->file('img_montir');
+            $imageName = date('YmdHis') . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
 
-
-        // $selectedCategories = $request->input('kategori_id');
-        if ($request->file('foto')) {
-            $file = $request->file('foto');
-            $extension = $file->getClientOriginalExtension();
-            $fileName = date('YmdHis') . '_' . uniqid() . '.' . $extension;
-            $destinationPath = public_path('storage/img-montir/');
-            $image = Image::make($file);
-            //resize manual
-            $image->fit(400, 400, function ($constraint) {
+            // Resize and store the image using Intervention Image
+            $resizedImage = Image::make($image)->fit(400, 400, function ($constraint) {
                 $constraint->upsize();
             });
-            //resize otomatis    
-            // $image->resize(400, null, function ($constraint) {
-            //     $constraint->aspectRatio();
-            //     $constraint->upsize();
-            // });
-            $image->save($destinationPath . $fileName);
-            $validatedData['foto'] = $fileName;
+
+            // Store the resized image in the public path
+            $resizedImage->save(public_path('storage/img-montir/' . $imageName));
+
+            $montir->img_montir = 'storage/img-montir/' . $imageName;
         }
-        // Add the serialized category IDs to the validated data
-        $validatedData['kategori_id'] = $kategori_id_serialized;
 
+        $montir->save();
+        $montir->kategori()->attach($validatedData['kategori_id']);
 
-        Montir::create($validatedData);
         return redirect('/backend/montir')->with('success', 'Data berhasil tersimpan');
     }
 

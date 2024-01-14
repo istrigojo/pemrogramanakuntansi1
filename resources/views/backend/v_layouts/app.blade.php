@@ -229,7 +229,6 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
                                 aria-label="Open user menu">
-
                                 <span class="avatar avatar-sm"
                                     style="background-image: url(backend/static/avatars/admin1.jpg)"></span>
                                 <div class="d-none d-xl-block ps-2">
@@ -284,9 +283,7 @@
                                             Beranda
                                         </span>
                                     </a>
-
                                 </li>
-
                                 <li
                                     class="nav-item dropdown {{ strpos(Route::currentRouteName(), 'berita') !== false || strpos(Route::currentRouteName(), 'kategories') !== false ? 'active' : '' }}">
                                     <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown"
@@ -766,16 +763,16 @@
         }
     }
 
-    // previewImgUser
-    function previewImgUser() {
-        const imgUser = document.querySelector('input[name="img_user"]');
-        const imgUserPreview = document.querySelector('.img-user-preview');
-        imgUserPreview.style.display = 'block';
-        const imgUserReader = new FileReader();
-        imgUserReader.readAsDataURL(imgUser.files[0]);
-        imgUserReader.onload = function(imgUserEvent) {
-            imgUserPreview.src = imgUserEvent.target.result;
-            imgUserPreview.style.width = '100%';
+    // previewfoto
+    function previewFoto() {
+        const foto = document.querySelector('input[name="foto"]');
+        const fotoPreview = document.querySelector('.foto-preview');
+        fotoPreview.style.display = 'block';
+        const fotoReader = new FileReader();
+        fotoReader.readAsDataURL(foto.files[0]);
+        fotoReader.onload = function(fotoEvent) {
+            fotoPreview.src = fotoEvent.target.result;
+            fotoPreview.style.width = '100%';
         }
     }
 
@@ -806,3 +803,4 @@
 
 
 </html>
+p

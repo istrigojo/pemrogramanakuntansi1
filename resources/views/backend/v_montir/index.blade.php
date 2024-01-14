@@ -51,7 +51,17 @@
                         <td> {{ $row->email }} </td>
                         <td> {{ $row->no_hp }} </td>
                         <td> {{ $row->jenis_kelamin }} </td>
-                        <td> {{ $row->kategori->spesialis }} </td>
+                        <td>
+                            {{-- Ubah Dari INT ke Array
+                            @php
+                                $kategoriArray = array_map('intval', str_split($row->kategori_id));
+                            @endphp
+                            <ul>
+                                @foreach ($kategoriArray as $kategori)
+                                    <li>{{ $kategori->jenis_servis }}</li>
+                                @endforeach
+                            </ul> --}}
+                        </td>
                         <td>
                             <a href="{{ route('montir.edit', $row->id) }}" title="Ubah Data">
                                 <span class="btn btn-outline-primary"><i class="fa fa-pencil"></i>Ubah</span>

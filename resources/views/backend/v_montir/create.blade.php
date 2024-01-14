@@ -34,7 +34,7 @@
                         @enderror
                     </div>
                     <div class="mb-3 row">
-                        <label class="col-2 col-form-label required">Nama montir</label>
+                        <label class="col-2 col-form-label">Nama montir</label>
                         <div class="col">
                             <input name="nama_montir" type="text"
                                 class="form-control @error('nama_montir') is-invalid @enderror"
@@ -49,14 +49,41 @@
                         <p></p>
                     </div>
                     <div class="mb-3 row">
-                        {{-- <label class="col-2 col-form-label">Jenis Servis</label> --}}
-                        <label for="btn-radio-vertical-dropdown-dropdown" class="col-2 col-form-label btn dropdown-toggle"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Spesialis Servis</label>
-                        <div class="dropdown-menu dropdown-menu-demo col">
+                        <label class="col-2 col-form-label">Jenis Servis</label>
+                        <div class="col">
+                            <!-- Default dropend button -->
+                            <div class="btn-group dropend">
+                                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Pilih Spesialis Servis
+                                </button>
+                                <div class="dropdown-menu">
+                                    @foreach ($kategori as $k)
+                                        <label class="dropdown-item">
+                                            <input class="form-check-input" type="checkbox" name="kategori_id[]"
+                                                value="{{ $k->id }}"> {{ $k->jenis_servis }}
+                                        </label>
+                                    @endforeach
+                                    </label>
+                                </div>
+                                @error('kategori_id')
+                                    <span class="invalid-feedback alert-danger" role="alert">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    {{-- 
+                    <div class="mb-3 row">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Spesialis Servis
+                        </button>
+                        <div class="dropdown-menu">
                             @foreach ($kategori as $k)
                                 <label class="dropdown-item">
-                                    <input class="form-check-input m-0 me-2" type="checkbox" name="kategori_id[]"
+                                    <input class="form-check-input" type="checkbox" name="kategori_id[]"
                                         value="{{ $k->id }}">{{ $k->jenis_servis }}
                                 </label>
                             @endforeach
@@ -67,14 +94,39 @@
                                 {{ $message }}
                             </span>
                         @enderror
-                    </div>
+                    </div> --}}
+                    {{-- <label class="form-label">Select</label>
+                        <div>
+                            <select class="form-select">
+                                <option>Option 1</option>
+                                <optgroup --}}
+                    {{-- <label class="col-2 col-form-label">Jenis Servis</label>  --}}
+                    {{-- <div class="mb-3 row">
+                        <label for="btn-radio-vertical-dropdown"
+                            class="col-2 col-md-auto col-form-label btn btn-secondary dropdown-toggle" type="button"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Spesialis Servis</label>
+                        <div class="dropdown-menu dropdown-menu-demo col">
+                            @foreach ($kategori as $k)
+                                <label class="dropdown-item">
+                                    <input class="form-check-input" type="checkbox" name="kategori_id[]"
+                                        value="{{ $k->id }}">{{ $k->jenis_servis }}
+                                </label>
+                            @endforeach
+                            </label>
+                        </div>
+                        @error('kategori_id')
+                            <span class="invalid-feedback alert-danger" role="alert">
+                                {{ $message }}
+                            </span>
+                        @enderror
+                    </div> --}}
                     <div class="mb-3 row">
-                        <label class="col-2 col-form-label  required">Email</label>
+                        <label class="col-2 col-form-label ">Email</label>
                         <div class="col">
                             <input name="email" type="text" class="form-control @error('email') is-invalid @enderror"
                                 placeholder="Masukkan alamat email (exp: teguhbengkel@gmail.com)"
                                 value="{{ old('email') }}">
-                            <!-- <small class="form-hint">Masukkan email anda.</small> -->
                         </div>
                         @error('email')
                             <span class="invalid-feedback alert-danger" role="alert">
@@ -84,7 +136,7 @@
                         <p></p>
                     </div>
                     <div class="mb-3 row">
-                        <label class="col-2 col-form-label required">Nomor Hp</label>
+                        <label class="col-2 col-form-label">Nomor Hp</label>
                         <div class="col">
                             <input name="no_hp" type="text" class="form-control @error('no_hp') is-invalid @enderror"
                                 placeholder="Masukkan nomor handphone" value="{{ old('no_hp') }}">

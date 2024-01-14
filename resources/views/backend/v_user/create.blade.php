@@ -13,7 +13,7 @@
                         <label class="col-3 col-form-label">Foto</label>
                         <div class="col">
                             <style>
-                                .img-user-preview {
+                                .foto-preview {
                                     max-width: 200px;
                                     /* Lebar maksimum 100% dari container */
                                     height: auto;
@@ -24,11 +24,12 @@
                                     /* Atur margin atas sesuai kebutuhan Anda */
                                 }
                             </style>
-                            <img class="img-user-preview">
-                            <input type="file" name="img_user"
-                                class="form-control @error('img_user') is-invalid @enderror" onchange="previewImgUser()">
+                            <img class="foto-preview">
+                            <input type="file" name="foto"
+                                class="form-cont rol @error('foto') is-invalid @enderror value="{{ old('foto') }}""
+                                onchange="previewFoto()">
                         </div>
-                        @error('img_user')
+                        @error('foto')
                             <div class="invalid-feedback alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
@@ -51,13 +52,12 @@
                                 {{ $message }}
                             </span>
                         @enderror
-                        <!-- <label for="floatingSelect">Data Mobil</label> -->
                     </div>
 
                     <div class="mb-3 row">
                         <label class="col-3 col-form-label required">Nama User</label>
                         <div class="col">
-                            <input name="nama" type="text" class="form-control @error('nama') is-invalid @enderror"
+                            <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror"
                                 placeholder="Masukkan nama lengkap" value="{{ old('nama') }}">
                             <!-- <small class="form-hint">We'll never share your email with anyone else.</small> -->
                         </div>
@@ -74,7 +74,6 @@
                             <input name="email" type="text" class="form-control @error('email') is-invalid @enderror"
                                 placeholder="Masukkan alamat email exp: teguhbengkel@gmail.com"
                                 value="{{ old('email') }}">
-                            <!-- <small class="form-hint">We'll never share your email with anyone else.</small> -->
                         </div>
                         @error('email')
                             <span class="invalid-feedback alert-danger" role="alert">
@@ -89,7 +88,6 @@
                             <input name="no_hp" type="text" onkeypress="return hanyaAngka(event)"
                                 class="form-control @error('no_hp') is-invalid @enderror"
                                 placeholder="Masukkan nomor telephone" value="{{ old('no_hp') }}">
-                            <!-- <small class="form-hint">We'll never share your no_hp with anyone else.</small> -->
                         </div>
                         @error('no_hp')
                             <span class="invalid-feedback alert-danger" role="alert">
@@ -98,7 +96,7 @@
                         @enderror
                         <p></p>
                     </div>
-                    <div class="mb-3 row">
+                    {{-- <div class="mb-3 row">
                         <label class="col-3 col-form-label required">Jenis Kelamin</label>
                         <div class="col">
                             <select class="form-control form-select @error('jenis_kelamin') is invalid @enderror"
@@ -130,15 +128,15 @@
                             </span>
                         @enderror
                         <p></p>
-                    </div>
+                    </div> --}}
                     <div class="mb-3 row">
                         <label class="col-3 col-form-label required">Password</label>
                         <div class="col">
                             <input name="password" type="password"
                                 class="form-control @error('password') is-invalid @enderror" placeholder="**********"
                                 value="{{ old('password') }}">
-                            <small class="form-hint">Password harus terjadi dari huruf kecil (a-z), huruf besar (A-Z),
-                                angka (1,2,3) dan simbol karakter (?=.*[\W_]).</small>
+                            <small class="form-hint">Password harus terjadi dari huruf kecil (a-z), huruf besar (A-Z), angka
+                                (1,2,3) dan simbol karakter (?=.*[\W_]).</small>
                         </div>
                         @error('password')
                             <span class="invalid-feedback alert-danger" role="alert">
@@ -155,8 +153,6 @@
                             <small class="form-hint">Masukkan kembali password.</small>
                         </div>
                     </div>
-
-
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-between">

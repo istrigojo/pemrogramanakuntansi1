@@ -18,11 +18,12 @@ return new class extends Migration
             $table->string('no_hp')->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->string('jenis_kelamin');
-            $table->text('alamat')->nullable();
+            $table->text('alamat');
             $table->string('img_montir')->nullable();
-            $table->unsignedBigInteger('kategori_id')->nullable();
+            // $table->unsignedBigInteger('kategori_id')->nullable();
+            // $table->unsignedBigInteger('kategori_id');
             $table->timestamps();
-            $table->foreign('kategori_id')->references('id')->on('kategori');
+            // $table->foreign('kategori_id')->references('id')->on('kategori');
             // $table->timestamps();
         });
     }

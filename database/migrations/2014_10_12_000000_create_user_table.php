@@ -15,13 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('email')->unique();
-            $table->enum('akses', [1, 2, 3])->default(1); //1=superadmin, 2=admin, 3=montir
+            $table->enum('akses', [0, 1, 2])->default(0); //0=superadmin, 1=admin, 3=montir
             $table->string('password');
             $table->string('no_hp')->nullable();
-            $table->date('tanggal_lahir')->nullable();
-            $table->string('jenis_kelamin');
-            // $table->string('jabatan');
-            $table->string('img_user')->nullable();
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }

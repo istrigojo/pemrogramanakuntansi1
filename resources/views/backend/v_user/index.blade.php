@@ -35,10 +35,7 @@
                     <th>Nama</th>
                     <th>Email</th>
                     <th>Akses</th>
-                    <th>No. Handphone</th>
-                    <th>Tanggal Lahir</th>
-                    <th>Jenis Kelamin</th>
-                    <!-- <th>Password</th> -->
+                    <th>Nomor HP</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -59,8 +56,8 @@
                             @endif
                         </td>
                         <td> {{ $row->no_hp }} </td>
-                        <td> {{ $row->tanggal_lahir }} </td>
-                        <td> {{ $row->jenis_kelamin }} </td>
+                        {{-- <td> {{ $row->tanggal_lahir }} </td>
+                        <td> {{ $row->jenis_kelamin }} </td> --}}
                         {{-- <!-- <td> {{ $row->password }} </td> --> --}}
                         <td>
                             <form method="POST" action="#" style="display: inline-block;">

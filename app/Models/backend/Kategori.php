@@ -16,4 +16,9 @@ class Kategori extends Model
     {
         return $this->belongsTo(Bagkategori::class, 'bagkategori_id');
     }
+
+    public function montir()
+    {
+        return $this->belongsToMany(Montir::class, 'montirkategori');
+    }
 }

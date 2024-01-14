@@ -41,15 +41,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+        // dd($request->all());
         $validatedData = $request->validate([
             'nama' => 'required|max:255',
             'email' => 'required|email|unique:user',
             'akses' => 'required',
-            'no_hp' => 'required|min:10|max:13',
-            'jenis_kelamin' => 'required',
-            'tanggal_lahir' => 'required',
             'password' => 'required|min:4|confirmed',
+            'no_hp' => 'required|max:13',
             'foto' => 'image|mimes:jpeg,jpg,png,gif|file|max:1024',
         ], $messages = [
             'foto.image' => 'Format gambar gunakan file dengan ekstensi jpeg, jpg, png, atau gif.',
@@ -59,20 +57,20 @@ class UserController extends Controller
 
         //simpan gambar
         // if ($request->file('foto')) {
-        //     $validatedData['foto'] = $request->file('foto')->store('img-user');
+        //     $validatedData['foto'] = $request->file('foto')->store('foto');
         // }
         //simpan gambar dg nama tanggal
         // if ($request->file('foto')) {
         //     $foto = $request->file('foto');
         //     $fileName = date('YmdHis') . '_' . uniqid() . '.' . $foto->getClientOriginalExtension();
-        //     $validatedData['foto'] = $foto->storeAs('img-user', $fileName);
+        //     $validatedData['foto'] = $foto->storeAs('foto', $fileName);
         // }
         //simpan gambar dg nama tgl, resize, tanpa direktori
         if ($request->file('foto')) {
             $file = $request->file('foto');
             $extension = $file->getClientOriginalExtension();
             $fileName = date('YmdHis') . '_' . uniqid() . '.' . $extension;
-            $destinationPath = public_path('storage/img-user/');
+            $destinationPath = public_path('storage/foto/');
             $image = Image::make($file);
             //resize manual
             $image->fit(400, 400, function ($constraint) {
@@ -148,7 +146,7 @@ class UserController extends Controller
         //simpan gambar dg nama tgl, resize, tanpa direktori
         if ($request->file('foto')) {
             if ($user->foto) {
-                $oldImagePath = public_path('storage/img-user/') . $user->foto;
+                $oldImagePath = public_path('storage/foto/') . $user->foto;
                 if (file_exists($oldImagePath)) {
                     unlink($oldImagePath);
                 }
@@ -156,7 +154,7 @@ class UserController extends Controller
             $file = $request->file('foto');
             $extension = $file->getClientOriginalExtension();
             $fileName = date('YmdHis') . '_' . uniqid() . '.' . $extension;
-            $destinationPath = public_path('storage/img-user/');
+            $destinationPath = public_path('storage/foto/');
             $image = Image::make($file);
             //resize manual
             $image->fit(400, 400, function ($constraint) {
@@ -182,7 +180,7 @@ class UserController extends Controller
     {
         $user = user::findOrFail($id);
         if ($user->foto) {
-            $oldImagePath = public_path('storage/img-user/') . $user->foto;
+            $oldImagePath = public_path('storage/foto/') . $user->foto;
             if (file_exists($oldImagePath)) {
                 unlink($oldImagePath);
             }
