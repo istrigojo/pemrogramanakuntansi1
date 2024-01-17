@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('no_hp');
             $table->string('jenis_kelamin');
             $table->text('alamat');
-            $table->unsignedBigInteger('mobil_id')->nullable();
+            $table->unsignedBigInteger('mobil_id');
             $table->timestamps();
             $table->foreign('mobil_id')->references('id')->on('mobil');
         });

@@ -16,9 +16,7 @@ return new class extends Migration
             $table->string('no_plat', 10);
             $table->string('merk');
             $table->string('warna');
-            // $table->unsignedBigInteger('customer_id');
             // $table->timestamps();
-            // $table->foreign('customer_id')->references('id')->on('customer');
         });
     }
 

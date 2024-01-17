@@ -13,17 +13,13 @@ return new class extends Migration
     {
         Schema::create('montir', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_montir');
-            $table->string('email')->unique();
-            $table->string('no_hp')->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->string('jenis_kelamin');
             $table->text('alamat');
-            $table->string('img_montir')->nullable();
-            // $table->unsignedBigInteger('kategori_id')->nullable();
+            $table->unsignedBigInteger('user_id');
             // $table->unsignedBigInteger('kategori_id');
             $table->timestamps();
-            // $table->foreign('kategori_id')->references('id')->on('kategori');
+            $table->foreign('user_id')->references('id')->on('user');
             // $table->timestamps();
         });
     }

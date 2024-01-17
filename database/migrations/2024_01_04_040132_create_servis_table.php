@@ -15,16 +15,21 @@ return new class extends Migration
             $table->id();
             $table->string('no_trans');
             $table->boolean('status', [0, 1])->default(0); //0=proses, 1=selesai
-            $table->timestamp('tanggal_masuk')->nullable();
-            $table->timestamp('tanggal_selesai')->nullable();
-            $table->double('total_servis')->nullable();
+            $table->timestamp('tanggal_masuk');
+            $table->timestamp('tanggal_selesai');
+            $table->double('total_servis'); 
+            $table->string('metode_byr'); 
             $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('kategori_id');
             $table->unsignedBigInteger('montir_id');
+            $table->unsignedBigInteger('produk_id');
             $table->timestamps();
             $table->foreign('customer_id')->references('id')->on('customer');
+            $table->foreign('user_id')->references('id')->on('user');
             $table->foreign('kategori_id')->references('id')->on('kategori');
             $table->foreign('montir_id')->references('id')->on('montir');
+            $table->foreign('produk_id')->references('id')->on('produk');
         });
     }
 

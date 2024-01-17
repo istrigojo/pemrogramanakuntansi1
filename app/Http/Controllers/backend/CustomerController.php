@@ -15,7 +15,6 @@ class CustomerController extends Controller
     public function index()
     {
         $customer = Customer::orderBy('id', 'asc')->paginate(5);
-        // $mobil = Mobil::orderBy('mobil_id', 'asc')->get();
         return view('backend.v_customer.index', [
             'judul' => 'Customer',
             'sub' => 'Data Customer',

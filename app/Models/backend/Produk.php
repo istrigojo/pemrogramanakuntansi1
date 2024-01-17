@@ -11,9 +11,4 @@ class Produk extends Model
     protected $table = "produk";
     // protected $fillable = ['kode_akun', 'nama_akun']; //field yang dapat diisi
     protected $guarded = ['id'];
-
-    public function kategori()
-    {
-        return $this->belongsTo(Kategori::class, 'kategori_id');
-    }
 }

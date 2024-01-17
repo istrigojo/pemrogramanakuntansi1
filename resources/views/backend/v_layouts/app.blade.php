@@ -334,7 +334,7 @@
                                                 <path d="M4 14h6v6h-6z" />
                                                 <path d="M17 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
                                             </svg>
-                                            Kategori
+                                            Kategori berita
                                         </a>
                                     </div>
                                 </li>
@@ -466,7 +466,7 @@
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                 <path d="M4 4h6v6h-6zm10 0h6v6h-6zm-10 10h6v6h-6zm10 3h6m-3 -3v6" />
                                             </svg>
-                                            Gol Kategori
+                                            Gol Servis
                                         </a>
                                         <a class="dropdown-item" href="{{ route('kategori.index') }}">
                                             <svg xmlns="http://www.w3.org/2000/svg"
@@ -480,7 +480,7 @@
                                                 <path d="M4 14h6v6h-6z" />
                                                 <path d="M17 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
                                             </svg>
-                                            Kategori
+                                            Jenis Servis
                                         </a>
                                     </div>
                                 </li>
@@ -673,10 +673,14 @@
         <script src="{{ asset('backend/dist/js/demo.min.js?1692870487') }}" defer></script>
 </body>
 
+{{-- Jquery CDN --}}
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+{{-- <script src="{{ asset('sweetalert/jquery-3.6.0.min.js') }}"></script> --}}
+
 <!-- sweetalert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.7/dist/sweetalert2.all.min.js"></script>
 <!-- atau versi download, simpan pada direktori public-->
-<!-- <script src="{{ asset('sweetalert/sweetalert2.all.min.js') }}"></script> -->
+{{-- <script src="{{ asset('sweetalert/sweetalert2.all.min.js') }}"></script> --}}
 @if (session('success'))
     <script>
         // confirm success
@@ -763,16 +767,16 @@
         }
     }
 
-    // previewfoto
-    function previewFoto() {
-        const foto = document.querySelector('input[name="foto"]');
-        const fotoPreview = document.querySelector('.foto-preview');
-        fotoPreview.style.display = 'block';
-        const fotoReader = new FileReader();
-        fotoReader.readAsDataURL(foto.files[0]);
-        fotoReader.onload = function(fotoEvent) {
-            fotoPreview.src = fotoEvent.target.result;
-            fotoPreview.style.width = '100%';
+    // previewImgProduk
+    function previewImgProduk() {
+        const imgProduk = document.querySelector('input[name="img_produk"]');
+        const imgProdukPreview = document.querySelector('.img-produk-preview');
+        imgProdukPreview.style.display = 'block';
+        const imgProdukReader = new FileReader();
+        imgProdukReader.readAsDataURL(imgProduk.files[0]);
+        imgProdukReader.onload = function(imgProdukEvent) {
+            imgProdukPreview.src = imgProdukEvent.target.result;
+            imgProdukPreview.style.width = '100%';
         }
     }
 

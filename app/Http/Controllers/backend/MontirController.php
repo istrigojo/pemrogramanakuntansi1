@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Backend\Montir;
 use App\Models\Backend\Kategori;
+use App\Models\Backend\User;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 
@@ -31,10 +32,12 @@ class MontirController extends Controller
      */
     public function create()
     {
+        $user = User::orderBy('id', 'asc')->get();
         $kategori = Kategori::orderBy('id', 'asc')->get();
         return view('backend.v_montir.create', [
             'judul' => 'Montir',
             'sub' => 'Data Montir',
+            'user' => $user,
             'kategori' => $kategori
         ]);
     }
@@ -44,42 +47,44 @@ class MontirController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
         $validatedData = $request->validate([
             'nama_montir' => 'required',
-            'email' => 'required|email|unique:montir',
-            'no_hp' => 'required|min:9|max:14',
+            // 'email' => 'required|email|unique:montir',
+            // 'no_hp' => 'required|min:9|max:14',
             'jenis_kelamin' => 'required',
             'alamat' => 'required',
             'kategori_id' => 'required|array',
-            'img_montir' => 'sometimes|nullable|image|mimes:jpeg,jpg,png,gif|file|max:1024',
-        ], $messages = [
-            'img_montir.image' => 'Format gambar gunakan file dengan ekstensi jpeg, jpg, png, atau gif.',
-            'img_montir.max' => 'Ukuran file gambar Maksimal adalah 1024 KB.'
+            //     'img_montir' => 'sometimes|nullable|image|mimes:jpeg,jpg,png,gif|file|max:1024',
+            // ], $messages = [
+            //     'img_montir.image' => 'Format gambar gunakan file dengan ekstensi jpeg, jpg, png, atau gif.',
+            //     'img_montir.max' => 'Ukuran file gambar Maksimal adalah 1024 KB.'
         ]);
         $montir = new Montir();
         $montir->nama_montir = $validatedData['nama_montir'];
-        $montir->email = $validatedData['email'];
-        $montir->no_hp = $validatedData['no_hp'];
+        // $montir->email = $validatedData['email'];
+        // $montir->no_hp = $validatedData['no_hp'];
         $montir->jenis_kelamin = $validatedData['jenis_kelamin'];
         $montir->alamat = $validatedData['alamat'];
-        if ($request->hasFile('img_montir')) {
-            $image = $request->file('img_montir');
-            $imageName = date('YmdHis') . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+        // if ($request->hasFile('img_montir')) {
+        //     $image = $request->file('img_montir');
+        //     $imageName = date('YmdHis') . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
 
-            // Resize and store the image using Intervention Image
-            $resizedImage = Image::make($image)->fit(400, 400, function ($constraint) {
-                $constraint->upsize();
-            });
+        // Resize and store the image using Intervention Image
+        // $resizedImage = Image::make($image)->fit(400, 400, function ($constraint) {
+        //     $constraint->upsize();
+        // });
 
-            // Store the resized image in the public path
-            $resizedImage->save(public_path('storage/img-montir/' . $imageName));
+        // Store the resized image in the public path
+        //     $resizedImage->save(public_path('storage/img-montir/' . $imageName));
 
-            $montir->img_montir = 'storage/img-montir/' . $imageName;
-        }
+        //     $montir->img_montir = 'storage/img-montir/' . $imageName;
+        // }
 
-        $montir->save();
+        // $montir->save();
         $montir->kategori()->attach($validatedData['kategori_id']);
+
+        Montir::create($validatedData);
 
         return redirect('/backend/montir')->with('success', 'Data berhasil tersimpan');
     }
@@ -114,5 +119,15 @@ class MontirController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function getIdUser($id)
+    {
+        $user = User::find($id);
+
+        return response()->json([
+            'email' => $user->email,
+            'no' => $user->no_hp,
+        ]);
     }
 }

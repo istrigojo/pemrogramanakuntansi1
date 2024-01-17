@@ -37,25 +37,20 @@
                     <th> Merk </th>
                     <th> Stok </th>
                     <th> Harga </th>
-                    <th> Jenis Servis </th>
-                    <th> Tanggal Masuk </th>
-                    <!-- <th> Tanggal Keluar </th> -->
+                    <th> Total </th>
                     <th> Aksi </th>
                 </tr>
             </thead>
-            @foreach ($produk as $index => $row)
-                <tbody>
+            <tbody>
+                @foreach ($produk as $index => $row)
                     <tr>
                         <td> {{ $index + 1 }} </td>
-                        <td> {{ $row->nama_produk }}
-                        </td>
-                        <td> {{ $row->detail }}</td>
-                        <td> {{ $row->merk }}</td>
-                        <td> {{ $row->stok }}</td>
-                        <td> {{ $row->harga }}</td>
-                        <td> {{ $row->kategori->jenis_servis }}</td>
-                        <td> {{ $row->tanggal_masuk }}</td>
-                        <!-- <td> {{ $row->tanggal_keluar }}</td> -->
+                        <td> {{ $row->nama_produk }} </td>
+                        <td> {{ $row->detail }} </td>
+                        <td> {{ $row->merk }} </td>
+                        <td> {{ $row->stok }} </td>
+                        <td> {{ 'Rp ' . number_format($row->harga, 0, ',', '.') }} </td>
+                        <td> {{ 'Rp ' . number_format($row->stok * $row->harga, 0, ',', '.') }} </td>
                         <td>
                             <form method="POST" action="#" style="display: inline-block;">
                                 @csrf
@@ -63,10 +58,10 @@
                                     title='Detail' data-konf-proses="#"><i
                                         class="fa fa-chevron-circle-up"></i>Detail</button>
                                 <!-- <button type="button" class="btn btn-secondary  btn-sm show_confirm_proses" data-toggle="tooltip" title='Detail Persediaan' data-konf-="#"><i class="fas fa-chevron-circle-up"></i> Detail
-                                </button> -->
+                                                                                    </button> -->
                             </form>
                             <a href="{{ route('produk.edit', $row->id) }}" title="Ubah Data">
-                                <span class="btn btn-outline-primary"><i class=" fa-edit"></i>Ubah</span>
+                                <span class="btn btn-outline-primary"><i class="fa fa-pencil"></i>Ubah</span>
                             </a>
                             <form method="POST" action="{{ route('produk.destroy', $row->id) }}"
                                 style="display: inline-block;">
@@ -77,7 +72,7 @@
                             </form>
                         </td>
                     </tr>
-            @endforeach
+                @endforeach
             </tbody>
         </table>
         <div class="card-footer d-flex align-items-center">

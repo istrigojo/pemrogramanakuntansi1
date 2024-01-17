@@ -9,18 +9,18 @@ class Servis extends Model
 {
     public $timestamps = true;
     protected $table = "servis";
-    //protected $fillable = ['nama', 'email', 'no_hp']; //field yang dapat diisi
     protected $guarded = ['id'];
 
     public function customer()
     {
-        return $this->belongsTo(Customer::class, 'customer_id', 'mobil_id');
+        return $this->belongsTo(Customer::class, 'customer_id');
     }
 
-    // public function mobil()
-    // {
-    //     return $this->belongsTo(Mobil::class, 'mobil_id');
-    // }
+    public function montir()
+    {
+        return $this->belongsTo(Montir::class, 'montir_id');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

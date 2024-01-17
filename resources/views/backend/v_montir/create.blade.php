@@ -1,5 +1,6 @@
 @extends('backend.v_layouts.app')
-@section('content')
+@section('content')    
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="col-md-12">
         <div class="card">
             <form action="{{ route('montir.store') }}" method="post" class="card">
@@ -10,6 +11,36 @@
                 </div>
                 <div class="card-body">
                     <div class="mb-3 row">
+                        <label class="col-2 col-form-label">Pilih User</label>
+                        <div class="col">
+                            <select class="form-control form-select @error('user_id') is invalid @enderror" name="user_id"
+                                id="user" aria-label="Floating label select example">
+                                <option value=""> Pilih Nama Montir </option>
+                                @foreach ($user as $row)
+                                    <option value="{{ $row->id }}"> {{ $row->nama }} </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        @error('user_id')
+                            <span class="invalid-feedback alert-danger" role="alert">
+                                {{ $message }}
+                            </span>
+                        @enderror
+                    </div>
+                    {{-- <div class="mb-3 row">
+                        <label class="col-3 col-form-label">Foto</label>
+                        <div class="col">
+                            <img class="foto-preview">
+                            <input type="file" name="foto"
+                                class="form-cont rol @error('foto') is-invalid @enderror value="{{ old('foto') }}""
+                                onchange="previewFoto()">
+                        </div>
+                        @error('foto')
+                            <div class="invalid-feedback alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div> --}}
+
+                    {{-- <div class="mb-3 row">
                         <label class="col-2 col-form-label">Foto</label>
                         <div class="col">
                             <style>
@@ -32,8 +63,39 @@
                         @error('img_montir')
                             <div class="invalid-feedback alert-danger">{{ $message }}</div>
                         @enderror
+                    </div> --}}
+
+                    <div class="mb-3 row">
+                        <label class="col-2 col-form-label">Email</label>
+                        <div class="col">
+                            <input type="string" disabled name="email" value="{{ old('email') }}"
+                                class="form-control @error('email') is-invalid @enderror"
+                                placeholder="Masukkan alamat email exp: teguhbengkel@gmail.com" id="email">
+                        </div>
+                        @error('email')
+                            <span class="invalid-feedback alert-danger" role="alert">
+                                {{ $message }}
+                            </span>
+                        @enderror
+                        <p></p>
                     </div>
                     <div class="mb-3 row">
+                        <label class="col-2 col-form-label">Nomor Hp</label>
+                        <div class="col">
+                            <input type="number" disabled onkeypress="return hanyaAngka(event)" name="no_hp"
+                                value="{{ old('no_hp') }}" class="form-control @error('no_hp') is-invalid @enderror"
+                                placeholder="Masukkan nomor hp" id="no_hp">
+                        </div>
+                        @error('no_hp')
+                            <span class="invalid-feedback alert-danger" role="alert">
+                                {{ $message }}
+                            </span>
+                        @enderror
+                        <p></p>
+                    </div>
+
+
+                    {{-- <div class="mb-3 row">
                         <label class="col-2 col-form-label">Nama montir</label>
                         <div class="col">
                             <input name="nama_montir" type="text"
@@ -47,7 +109,7 @@
                             </span>
                         @enderror
                         <p></p>
-                    </div>
+                    </div> --}}
                     <div class="mb-3 row">
                         <label class="col-2 col-form-label">Jenis Servis</label>
                         <div class="col">
@@ -121,34 +183,7 @@
                             </span>
                         @enderror
                     </div> --}}
-                    <div class="mb-3 row">
-                        <label class="col-2 col-form-label ">Email</label>
-                        <div class="col">
-                            <input name="email" type="text" class="form-control @error('email') is-invalid @enderror"
-                                placeholder="Masukkan alamat email (exp: teguhbengkel@gmail.com)"
-                                value="{{ old('email') }}">
-                        </div>
-                        @error('email')
-                            <span class="invalid-feedback alert-danger" role="alert">
-                                {{ $message }}
-                            </span>
-                        @enderror
-                        <p></p>
-                    </div>
-                    <div class="mb-3 row">
-                        <label class="col-2 col-form-label">Nomor Hp</label>
-                        <div class="col">
-                            <input name="no_hp" type="text" class="form-control @error('no_hp') is-invalid @enderror"
-                                placeholder="Masukkan nomor handphone" value="{{ old('no_hp') }}">
-                            <!-- <small class="form-hint">Ketik tanpa spasi.</small> -->
-                        </div>
-                        @error('no_hp')
-                            <span class="invalid-feedback alert-danger" role="alert">
-                                {{ $message }}
-                            </span>
-                        @enderror
-                        <p></p>
-                    </div>
+
                     <div class="mb-3 row">
                         <label class="col-2 col-form-label">Jenis Kelamin</label>
                         <div class="col">
@@ -198,4 +233,38 @@
             </form>
         </div>
     </div>
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+    $(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    });
+
+    $(function() {
+        $('#user').on('change', function() {
+            var user_id = $("#user").val();
+            
+            $.ajax({
+                url: 'backend/getIdUser/' + user_id,
+                type: 'GET',  // Update this line to use 'GET'
+                cache: false,
+                success: function(response) {
+                    $('#email').val(response.email);
+                    $('#no_hp').val(response.no_hp);
+                },
+                error: function(xhr, status, error) {
+                    console.log('Error:', error);
+                    $('#idUser').val('');
+                    // Handle errors if needed
+                }
+            });
+        });
+    });
+</script>
+
 @endsection

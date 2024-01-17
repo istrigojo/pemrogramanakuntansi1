@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('produk', function (Blueprint $table) {
             $table->id();
             // $table->boolean('status');
+            $table->string('img_produk')->nullable();
             $table->string('nama_produk');
             $table->text('detail');
             $table->string('merk');
@@ -21,10 +22,6 @@ return new class extends Migration
             $table->double('harga');
             $table->timestamp('tanggal_masuk')->nullable();
             $table->timestamp('tanggal_keluar')->nullable();
-            // $table->unsignedBigInteger('kategori_id');
-            $table->foreignId('kategori_id')->references('id')->on('kategori');
-            // $table->foreignId('user_id')->references('id')->on('user');
-            $table->string('img_produk')->nullable();
             $table->timestamps();
         });
     }
