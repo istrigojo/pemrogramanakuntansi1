@@ -17,10 +17,6 @@ class Transaksi extends Model
         return $this->belongsTo(Servis::class, 'servis_id');
     }
 
-    // public function mobil()
-    // {
-    //     return $this->belongsTo(Mobil::class, 'mobil_id');
-    // }
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

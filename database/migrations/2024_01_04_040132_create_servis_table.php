@@ -13,16 +13,16 @@ return new class extends Migration
     {
         Schema::create('servis', function (Blueprint $table) {
             $table->id();
-            $table->string('no_trans');
-            $table->boolean('status', [0, 1])->default(0); //0=proses, 1=selesai
-            $table->timestamp('tanggal_masuk');
-            $table->timestamp('tanggal_selesai');
-            $table->double('total_servis'); 
-            $table->string('metode_byr'); 
-            $table->unsignedBigInteger('customer_id');
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('kategori_id');
-            $table->unsignedBigInteger('montir_id');
+            $table->string('no_trans'); //
+            $table->boolean('status', [0, 1])->default(0); //0=proses, 1=selesai  //
+            $table->date('tanggal_masuk'); //
+            $table->date('tanggal_selesai'); //YET
+            $table->double('total_servis');
+            $table->string('metode_byr'); //YET
+            $table->unsignedBigInteger('customer_id'); //
+            $table->unsignedBigInteger('user_id'); //
+            $table->unsignedBigInteger('kategori_id'); //
+            $table->unsignedBigInteger('montir_id'); //YETdimasukkan saat apa?
             $table->unsignedBigInteger('produk_id');
             $table->timestamps();
             $table->foreign('customer_id')->references('id')->on('customer');

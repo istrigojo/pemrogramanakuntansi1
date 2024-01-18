@@ -39,7 +39,7 @@
                     <th> Email </th>
                     <th> Nomor HP </th>
                     <th> Jenis Kelamin </th>
-                    <th> Spesialis </th>
+                    <th> Keahlian servis </th>
                     <th> Aksi </th>
                 </tr>
             </thead>
@@ -47,9 +47,9 @@
                 @foreach ($montir as $index => $row)
                     <tr>
                         <td> {{ $montir->firstItem() + $index }} </td>
-                        <td> {{ $row->nama_montir }} </td>
-                        <td> {{ $row->email }} </td>
-                        <td> {{ $row->no_hp }} </td>
+                        <td> {{ $row->user->nama }} </td>
+                        <td> {{ $row->user->email }} </td>
+                        <td> {{ $row->user->no_hp }} </td>
                         <td> {{ $row->jenis_kelamin }} </td>
                         <td>
                             {{-- Ubah Dari INT ke Array

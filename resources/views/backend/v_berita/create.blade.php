@@ -83,8 +83,8 @@
                     <div class="mb-3 row">
                         <label class="col-2 col-form-label required">Detail</label>
                         <div class="col">
-                            <textarea name="detail" rows="3" class="form-control @error('detail') is-invalid @enderror" id="ckeditor"
-                                placeholder="Masukkan detail customer" value="{{ old('detail') }}"></textarea>
+                            <textarea name="detail" rows="3" class="form-control @error('detail') is-invalid @enderror"
+                                data-bs-toggle="autosize" id="ckeditor" placeholder="Masukkan detail customer" value="{{ old('detail') }}"></textarea>
                             @error('detail')
                                 <span class=" invalid-feedback alert-danger" role="alert">
                                     {{ $message }}

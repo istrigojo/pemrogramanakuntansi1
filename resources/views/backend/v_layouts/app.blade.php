@@ -619,7 +619,7 @@
                 </div>
             </div>
         </div>
-        <footer class="footer footer-transparent d-print-none">
+        {{-- <footer class="footer footer-transparent d-print-none">
             <div class="container-xl">
                 <div class="row text-center align-items-center flex-row-reverse">
                     <div class="col-lg-auto ms-lg-auto">
@@ -664,18 +664,120 @@
                     </div>
                 </div>
             </div>
-        </footer>
+        </footer> --}}
         </div>
         </div>
         <!-- Libs JS -->
+        <script src="{{ asset('backend/dist/libs/tom-select/dist/js/tom-select.base.min.js?1692870487') }} defer></script>
         <!-- Tabler Core -->
         <script src="{{ asset('backend/dist/js/tabler.min.js?1692870487') }}" defer></script>
         <script src="{{ asset('backend/dist/js/demo.min.js?1692870487') }}" defer></script>
+        <script src="{{ asset('backend/dist/js/tabler.min.js?1692870487') }}" defer></script>
+    </a>
 </body>
 
+{{-- TomSelect for whut what the hell i am doing here i dont belong here~ --}}
+<link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
+{{-- <script src="{{ asset('backend/dist/libs/tom-select/dist/js/tom-select.base.min.js?1692870487') }} defer></script> --}}
+<script>
+    // @formatter:off
+    document.addEventListener("DOMContentLoaded", function() {
+        var el;
+        window.TomSelect &&
+            new TomSelect(
+                (el = document.getElementById("select-servis")), {
+                    copyClassesToDropdown: false,
+                    dropdownParent: "body",
+                    controlInput: "<input>",
+                    render: {
+                        item: function(data, escape) {
+                            if (data.customProperties) {
+                                return (
+                                    '<div><span class="dropdown-item-indicator">' +
+                                    data.customProperties +
+                                    "</span>" +
+                                    escape(data.text) +
+                                    "</div>"
+                                );
+                            }
+                            return (
+                                "<div>" + escape(data.text) + "</div>"
+                            );
+                        },
+                        option: function(data, escape) {
+                            if (data.customProperties) {
+                                return (
+                                    '<div><span class="dropdown-item-indicator">' +
+                                    data.customProperties +
+                                    "</span>" +
+                                    escape(data.text) +
+                                    "</div>"
+                                );
+                            }
+                            return (
+                                "<div>" + escape(data.text) + "</div>"
+                            );
+                        },
+                    },
+                }
+            );
+    });
+    // @formatter:on
+</script>
+<script>
+    // @formatter:off
+    document.addEventListener("DOMContentLoaded", function() {
+        var el;
+        window.TomSelect &&
+            new TomSelect(
+                (el = document.getElementById("select-produk")), {
+                    copyClassesToDropdown: false,
+                    dropdownParent: "body",
+                    controlInput: "<input>",
+                    render: {
+                        item: function(data, escape) {
+                            if (data.customProperties) {
+                                return (
+                                    '<div><span class="dropdown-item-indicator">' +
+                                    data.customProperties +
+                                    "</span>" +
+                                    escape(data.text) +
+                                    "</div>"
+                                );
+                            }
+                            return (
+                                "<div>" + escape(data.text) + "</div>"
+                            );
+                        },
+                        option: function(data, escape) {
+                            if (data.customProperties) {
+                                return (
+                                    '<div><span class="dropdown-item-indicator">' +
+                                    data.customProperties +
+                                    "</span>" +
+                                    escape(data.text) +
+                                    "</div>"
+                                );
+                            }
+                            return (
+                                "<div>" + escape(data.text) + "</div>"
+                            );
+                        },
+                    },
+                }
+            );
+    });
+    // @formatter:on
+</script>
+
 {{-- Jquery CDN --}}
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{{-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" --}}
+{{-- integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> --}}
 {{-- <script src="{{ asset('sweetalert/jquery-3.6.0.min.js') }}"></script> --}}
+
+
 
 <!-- sweetalert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.7/dist/sweetalert2.all.min.js"></script>

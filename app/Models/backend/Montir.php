@@ -15,4 +15,9 @@ class Montir extends Model
     {
         return $this->belongsToMany(Kategori::class, 'montirkategori');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(user::class, 'user_id');
+    }
 }

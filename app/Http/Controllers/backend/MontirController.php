@@ -47,9 +47,10 @@ class MontirController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         $validatedData = $request->validate([
-            'nama_montir' => 'required',
+            'user_id' => 'required',
+            'tanggal_lahir' => 'required',
             // 'email' => 'required|email|unique:montir',
             // 'no_hp' => 'required|min:9|max:14',
             'jenis_kelamin' => 'required',
@@ -61,7 +62,7 @@ class MontirController extends Controller
             //     'img_montir.max' => 'Ukuran file gambar Maksimal adalah 1024 KB.'
         ]);
         $montir = new Montir();
-        $montir->nama_montir = $validatedData['nama_montir'];
+        $montir->nama_montir = $validatedData['user_id'];
         // $montir->email = $validatedData['email'];
         // $montir->no_hp = $validatedData['no_hp'];
         $montir->jenis_kelamin = $validatedData['jenis_kelamin'];
@@ -127,7 +128,7 @@ class MontirController extends Controller
 
         return response()->json([
             'email' => $user->email,
-            'no' => $user->no_hp,
+            'no_hp' => $user->no_hp,
         ]);
     }
 }

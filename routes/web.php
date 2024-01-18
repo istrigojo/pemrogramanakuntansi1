@@ -31,9 +31,10 @@ Route::resource('backend/user', UserController::class);
 Route::resource('backend/mobil', MobilController::class);
 Route::resource('backend/produk', ProdukController::class);
 Route::resource('backend/montir', MontirController::class);
-Route::match(['get', 'post'], 'backend/getIdUser/{id}', 'MontirController@getIdUser');
+// Route::match(['get', 'post'], 'backend/getIdUser/{id}', 'MontirController@getIdUser');
 
-// Route::get('backend/getIdUser/{id}', [MontirController::class, 'getIdUser'])->name('backend/getIdUser');
+Route::get('backend/montir/getIdUser/{id}', [MontirController::class, 'getIdUser']);
+// Route::get('backend/montir/getIdUser/{id}', [MontirController::class, 'getIdUser'])->name('backend/getIdUser');
 Route::resource('backend/bagkategori', BagkategoriController::class);
 Route::resource('backend/kategori', KategoriController::class);
 Route::resource('backend/kategories', KategoriesController::class);

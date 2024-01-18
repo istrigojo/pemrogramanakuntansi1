@@ -41,10 +41,10 @@
                                 id="floatingSelect" aria-label="Floating label select example">
                                 <option value="" {{ old('akses') == '' ? 'selected' : '' }}> --Pilih Hak Akses--
                                 </option>
-                                <option value="1" {{ old('akses') == '1' ? 'selected' : '' }}>Super Admin</option>
-                                <option value="2" {{ old('akses') == '2' ? 'selected' : '' }}>Administrator
+                                <option value="0" {{ old('akses') == '0' ? 'selected' : '' }}>Super Admin</option>
+                                <option value="1" {{ old('akses') == '1' ? 'selected' : '' }}>Administrator
                                 </option>
-                                <option value="3" {{ old('akses') == '3' ? 'selected' : '' }}>Montir</option>
+                                <option value="2" {{ old('akses') == '2' ? 'selected' : '' }}>Montir</option>
                             </select>
                         </div>
                         @error('akses')

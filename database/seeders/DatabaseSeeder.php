@@ -3,17 +3,42 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\User;
 use App\Models\Backend\Akun;
+use App\Models\Backend\User;
 use App\Models\Backend\Bagkategori;
 use App\Models\Backend\Kategori;
-use App\Models\Customer;
-
+use App\Models\Backend\Mobil;
+use App\Models\Backend\Montir;
+use App\Models\Backend\Customer;
 
 class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        Akun::create([
+            'kode_akun' => '1-1000',
+            'nama_akun' => 'Kas',
+        ]);
+        Akun::create([
+            'kode_akun' => '2-1000',
+            'nama_akun' => 'Hutang',
+        ]);
+        Akun::create([
+            'kode_akun' => '3-1000',
+            'nama_akun' => 'Modal',
+        ]);
+        Akun::create([
+            'kode_akun' => '4-1000',
+            'nama_akun' => 'Pendapatan',
+        ]);
+        User::create([
+            'nama' => 'Massayu Urbaningrum',
+            'email' => 'admin@gmai.com',
+            'akses' => '0',
+            'password' => bcrypt('P@55word'),
+            'no_hp' => '089570432488',
+            'foto' => '',
+        ]);
         Bagkategori::create([
             'kategori_servis' => 'Servis Berkala'
         ]);
@@ -86,80 +111,39 @@ class DatabaseSeeder extends Seeder
             'bagkategori_id' => '3',
             'biaya_servis' => '100000'
         ]);
-        // Kategori::create([
-        //     'jenis_servis' => '',
-        //     'spesialis' => 'umum',
-        //     'bagkategori_id' => '1',
-        //     'biaya_servis' => '100000'
-        // ]);
-        // Kategori::create([
-        //     'jenis_servis' => '',
-        //     'spesialis' => 'umum',
-        //     'bagkategori_id' => '1',
-        //     'biaya_servis' => '100000'
-        // ]);
-        // Kategori::create([
-        //     'jenis_servis' => '',
-        //     'spesialis' => 'umum',
-        //     'bagkategori_id' => '1',
-        //     'biaya_servis' => '100000'
-        // ]);
-        // Kategori::create([
-        //     'jenis_servis' => '',
-        //     'spesialis' => 'umum',
-        //     'bagkategori_id' => '1',
-        //     'biaya_servis' => '100000'
-        // ]);
-        // Kategori::create([
-        //     'jenis_servis' => '',
-        //     'spesialis' => 'umum',
-        //     'bagkategori_id' => '1',
-        //     'biaya_servis' => '100000'
-        // ]);
-        // Kategori::create([
-        //     'jenis_servis' => '',
-        //     'spesialis' => 'umum',
-        //     'bagkategori_id' => '1',
-        //     'biaya_servis' => '100000'
-        // ]);
-        // Kategori::create([
-        //     'jenis_servis' => '',
-        //     'spesialis' => 'umum',
-        //     'bagkategori_id' => '1',
-        //     'biaya_servis' => '100000'
-        // ]);
 
-        // User::create([
-        //     'nama' => 'Administrator',
-        //     'email' => 'admin@gmail.com',
-        //     'is_admin' => 1,
-        //     'no_hp' => '081234567891',
-        //     'tanggal_lahir' => '',
-        //     'jenis kelamin' => 'Perempuan',
-        //     'jabatan' => 'Admin',
-        //     'password' => bcrypt('P@55word'),
-        // ]);
+
         // Customer::create([
         //     'nama' => 'Lynda Fatikah',
         //     'alamat' => 'Jalan Syalalala',
         //     'jenis_kelamin' => 'ciwiw',
         //     'no_hp' => '0895704324887',
         // ]);
-        Akun::create([
-            'kode_akun' => '1-1000',
-            'nama_akun' => 'Kas',
+
+        Mobil::create([
+            'no_plat' => 'B 1234 TE',
+            'merk' => 'Kijang',
+            'warna' => 'Hitam',
         ]);
-        Akun::create([
-            'kode_akun' => '2-1000',
-            'nama_akun' => 'Hutang',
+        Mobil::create([
+            'no_plat' => 'T 5678 EG',
+            'merk' => 'Ferrari',
+            'warna' => 'Pink',
         ]);
-        Akun::create([
-            'kode_akun' => '3-1000',
-            'nama_akun' => 'Modal',
+        Customer::create([
+            'nama_customer' => 'Heru Riyadi',
+            'mobil_id' => '1',
+            'email' => 'heru@gmail.com',
+            'no_hp' => '082122118513',
+            'jenis_kelamin' => 'Laki-laki',
+            'alamat' => 'Jalan Setia Budi, Kota Tegal',
         ]);
-        Akun::create([
-            'kode_akun' => '4-1000',
-            'nama_akun' => 'Pendapatan',
-        ]);
+        // Montir::create([
+        //     'user_id' => '1',
+        //     'tanggal_lahir' => '26-05-2000',
+        //     'jenis_kelamin' => 'Perempuan',
+        //     'alamat' => 'Jalan Ki Hajar Dewantoro',
+        //     'kategori_id' => '1234',
+        // ]);
     }
 }

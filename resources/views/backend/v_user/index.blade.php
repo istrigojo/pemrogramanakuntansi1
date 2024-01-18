@@ -47,9 +47,9 @@
                         <td> {{ $row->nama }} </td>
                         <td> {{ $row->email }} </td>
                         <td>
-                            @if ($row->akses == 1)
+                            @if ($row->akses == 0)
                                 Super Admin
-                            @elseif ($row->akses == 2)
+                            @elseif ($row->akses == 1)
                                 Administrator
                             @else
                                 Montir

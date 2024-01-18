@@ -57,8 +57,6 @@
                                 <button type="button" class="btn btn-outline-secondary" data-toggle="tooltip"
                                     title='Detail' data-konf-proses="#"><i
                                         class="fa fa-chevron-circle-up"></i>Detail</button>
-                                <!-- <button type="button" class="btn btn-secondary  btn-sm show_confirm_proses" data-toggle="tooltip" title='Detail Persediaan' data-konf-="#"><i class="fas fa-chevron-circle-up"></i> Detail
-                                                                                    </button> -->
                             </form>
                             <a href="{{ route('produk.edit', $row->id) }}" title="Ubah Data">
                                 <span class="btn btn-outline-primary"><i class="fa fa-pencil"></i>Ubah</span>
