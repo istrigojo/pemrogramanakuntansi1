@@ -29,7 +29,7 @@
                         <label class="col-2 col-form-label">Mobil Customer</label>
                         <div class="col">
                             <select class="form-control form-select @error('mobil_id') is invalid @enderror" name="mobil_id"
-                                id="floatingSelect" aria-label="Floating label select example">
+                                id="mobil_id" aria-label="Floating label select example">
                                 <option selected="">Pilih mobil customer</option>
                                 @foreach ($mobil as $row)
                                     <option value="{{ $row->id }}"> {{ $row->no_plat }} </option>

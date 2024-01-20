@@ -18,7 +18,6 @@ return new class extends Migration
             $table->date('tanggal_masuk'); //
             $table->date('tanggal_selesai'); //YET
             $table->double('total_servis');
-            $table->string('metode_byr'); //YET
             $table->unsignedBigInteger('customer_id'); //
             $table->unsignedBigInteger('user_id'); //
             $table->unsignedBigInteger('kategori_id'); //

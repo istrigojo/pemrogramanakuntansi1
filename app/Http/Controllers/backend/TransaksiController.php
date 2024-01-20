@@ -6,10 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Backend\Transaksi;
 use App\Models\Backend\Servis;
+use App\Models\Backend\Customer;
 use App\Models\Backend\Akun;
-use App\Models\Backend\Kategori;
-use App\Models\Backend\Produk;
-// use App\Models\Backend\Produk;
 
 class TransaksiController extends Controller
 {
@@ -19,13 +17,12 @@ class TransaksiController extends Controller
     public function index()
     {
         $transaksi = Transaksi::orderBy('id', 'asc')->paginate(5);
-        $servis = Servis::orderBy('id', 'asc')->paginate(5);
-        // $mobil = Mobil::orderBy('mobil_id', 'asc')->get();
+        $servis = Servis::orderBy('id', 'asc')->get();
         return view('backend.v_transaksi.index', [
             'judul' => 'Transaksi',
-            'sub' => 'Transaksi',
-            'servis' => $servis,
-            'transaksi' => $transaksi
+            'sub' => 'Data Transaksi',
+            'transaksi' => $transaksi,
+            'servis' => $servis
         ]);
     }
 
@@ -34,17 +31,17 @@ class TransaksiController extends Controller
      */
     public function create()
     {
+        $transaksi = Transaksi::orderBy('id', 'asc')->paginate(5);
         $servis = Servis::orderBy('id', 'asc')->get();
+        $customer = Customer::orderBy('id', 'asc')->get();
         $akun = Akun::orderBy('id', 'asc')->get();
-        $kategori = Kategori::orderBy('id', 'asc')->get();
-        $produk = Produk::orderBy('id', 'asc')->get();
-        return view('backend.v_customer.create', [
-            'judul' => 'Customer',
-            'sub' => 'Tambah Customer',
+        return view('backend.v_transaksi.create', [
+            'judul' => 'Transaksi',
+            'sub' => 'TRANSAKSI',
+            'transaksi' => $transaksi,
             'servis' => $servis,
+            'customer' => $customer,
             'akun' => $akun,
-            // 'kategori,' => $kategori,
-            // 'produk,' => $produk
         ]);
     }
 
@@ -62,8 +59,8 @@ class TransaksiController extends Controller
             // 'jenis_kelamin' => 'required',
             // 'alamat' => 'required|max:255',
         ]);
-        Servis::create($validatedData);
-        return redirect('/backend/servis')->with('success', 'Data berhasil tersimpan');
+        Transaksi::create($validatedData);
+        return redirect('/backend/transaksi')->with('success', 'Data berhasil tersimpan');
     }
 
     /**

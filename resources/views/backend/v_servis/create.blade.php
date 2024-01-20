@@ -9,7 +9,7 @@
 
                 <div class="card bg-primary text-primary-fg text-center">
                     <br>
-                    <h1 class="card-title"> {{ $sub }} </h1>
+                    <h2> {{ $sub }} </h2>
                 </div>
                 <div class="card bg-primary-lt">
                     <div class="card-body">
@@ -52,7 +52,6 @@
                                 <select name="status"
                                     class="form-control form-select @error('status') is invalid @enderror"
                                     id="select-produk" aria-label="Floating label select example" value="">
-
                                     <option value="0" {{ old('status') == 0 ? 'selected' : '' }}>Proses</option>
                                     <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>Selesai</option>
                                 </select>
@@ -169,26 +168,43 @@
                                 mobil.</small>
                             {{-- </div> --}}
                         </div>
+                        <div class="mb-3 row">
+                            <label class="col-2 col-form-label">Total Servis</label>
+                            <div class="col">
+                                <input type="text" name="total_servis" id="total_servis"
+                                    onkeypress="return hanyaAngka(event)"
+                                    class="form-control @error('total_servis') is-invalid @enderror"
+                                    value="{{ old('total_servis') }}" placeholder="">
 
+                                <small class="text-secondary">Total Biaya Servis, sudah termasuk Jasa Servis dan
+                                    Sparepart.</small>
+                            </div>
+                            @error('total_servis')
+                                <span class="invalid-feedback alert-danger" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
 
-                        <div class="card-footer bg-primary-lt">
-                            <div class="d-flex justify-content-between">
-                                <div class="text-start">
-                                    <a href="{{ route('servis.index') }}"><button type="button"
-                                            class="btn btn-ghost-danger active w-17"><i class="fa fa-arrow-left"></i>
-                                            &nbsp;
-                                            Kembali</button>
-                                </div>
-                                <div class="text-end">
-                                    <button type="submit" class="btn btn-primary"> <i class="fa fa-save"></i>
-                                        &nbsp;&nbsp;Simpan</button>
-                                </div>
+                    <div class="card-footer bg-primary-lt">
+                        <div class="d-flex justify-content-between">
+                            <div class="text-start">
+                                <a href="{{ route('servis.index') }}"><button type="button"
+                                        class="btn btn-ghost-danger active w-17"><i class="fa fa-arrow-left"></i>
+                                        &nbsp;
+                                        Kembali</button>
+                            </div>
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-primary"> <i class="fa fa-save"></i>
+                                    &nbsp;&nbsp;Simpan</button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
         </div>
+        </form>
+    </div>
     </div>
 
     <script>

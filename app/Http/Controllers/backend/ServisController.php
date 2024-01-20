@@ -39,7 +39,7 @@ class ServisController extends Controller
         $produk = Produk::orderBy('id', 'asc')->get();
         return view('backend.v_servis.create', [
             'judul' => 'Servis',
-            'sub' => 'Formulir Servis',
+            'sub' => 'FORMULIR SERVIS',
             'servis' => $servis,
             'customer' => $customer,
             'user' => $user,

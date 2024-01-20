@@ -9,7 +9,6 @@ class Customer extends Model
 {
     public $timestamps = true;
     protected $table = "customer";
-    //protected $fillable = ['nama', 'email', 'no_hp']; //field yang dapat diisi
     protected $guarded = ['id'];
 
     public function mobil()

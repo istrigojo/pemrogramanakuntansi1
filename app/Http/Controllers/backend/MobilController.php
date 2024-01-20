@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Backend\Mobil;
-use App\Models\Backend\Customer;
 
 class MobilController extends Controller
 {
@@ -27,12 +26,9 @@ class MobilController extends Controller
      */
     public function create()
     {
-        // $customer = Customer::orderBy('id', 'asc')->get();
-
         return view('backend.v_mobil.create', [
             'judul' => 'Mobil',
             'sub' => 'Data Mobil',
-            // 'customer' => $customer
         ]);
     }
 

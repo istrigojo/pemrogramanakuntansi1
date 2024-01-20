@@ -9,26 +9,15 @@ class Transaksi extends Model
 {
     public $timestamps = true;
     protected $table = "transaksi";
-    //protected $fillable = ['nama', 'email', 'no_hp']; //field yang dapat diisi
     protected $guarded = ['id'];
 
     public function servis()
     {
-        return $this->belongsTo(Servis::class, 'servis_id');
+        return $this->belongsTo(Servis::class, 'servis_id', 'customer_id', 'user_id', 'kategori_id', 'montir_id', 'produk_id');
     }
 
-    public function user()
+    public function akun()
     {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function kategori()
-    {
-        return $this->belongsTo(Kategori::class, 'kategori_id', 'montir_id');
-    }
-
-    public function produk()
-    {
-        return $this->belongsTo(Produk::class, 'produk_id');
+        return $this->belongsTo(Akun::class, 'akun_id');
     }
 }
